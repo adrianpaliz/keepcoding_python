@@ -22,10 +22,8 @@ while units_float > 0 and price_float > 0:
     price_input = input("Unit price (€): ")
     price_float = float(price_input)
 
-index = 0
-while index < len(prices_list):
-    print(prices_list[index], "€ - ", units_list[index], "units -", prices_list[index] * units_list[index], "€")
-    index += 1
+for price_float, units_float in zip(prices_list, units_list):
+    print(price_float, "€ -", units_float, "units -", price_float * units_float, "€")
 
 print("-------------------")
 print("Total:", total_price)
