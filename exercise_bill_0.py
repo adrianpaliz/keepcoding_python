@@ -7,14 +7,13 @@ price_float = float(price_input)
 total_items = 0
 total_price = 0
 
-print_lines = "\n"
-
+prices_list = []
+units_list = []
 while units_float > 0 and price_float > 0:
     unitary_total = units_float * price_float
+    prices_list.append(price_float)
+    units_list.append(units_float)
     
-    print_lines += str(price_float) + "€ - " + str(units_float) + " units - " + str(unitary_total) + "€\n"
-    # Another way for print_lines with .formart
-    # print_lines += "{}€ - {} units - {}€\n".format(precio_float, units_float, unitary_total)
     total_items += units_float
     total_price += unitary_total
     
@@ -23,7 +22,11 @@ while units_float > 0 and price_float > 0:
     price_input = input("Unit price (€): ")
     price_float = float(price_input)
 
-print(print_lines)
+index = 0
+while index < len(prices_list):
+    print(prices_list[index], "€ - ", units_list[index], "units -", prices_list[index] * units_list[index], "€")
+    index += 1
+
 print("-------------------")
 print("Total:", total_price)
 print("Units:", total_items)
