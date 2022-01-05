@@ -3,9 +3,12 @@ def to_uppercase(word):
     
     for character in word:
         character_code = ord(character)
-        uppercase_code = character_code - 32
-        uppercase_character = chr(uppercase_code)
-        result += uppercase_character
+        if character_code >= 97 and character_code <= 122:        
+            uppercase_code = character_code - 32
+            uppercase_character = chr(uppercase_code)
+            result += uppercase_character
+        else:
+            result += character
     
     return result
 
