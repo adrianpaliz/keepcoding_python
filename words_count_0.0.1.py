@@ -8,15 +8,15 @@ paragraph = "On the night of the 2016 presidential election, I spent a long time
 "four a.m. wake-up call."\
 # Paragraph of the book: The Undocumented Americans by Karla Cornejo Villavicencio
 
+position = 1
 words_number = 0
-previous_character = " "
 
-for character in paragraph:
-    if character == ' ' and previous_character != " ":
+while position < len(paragraph):
+    if paragraph[position] == ' ' and paragraph[position - 1] != ' ':
         words_number += 1
-    previous_character = character
+    position += 1
 
-if character != ' ':
+if paragraph[position - 1] != ' ':
     words_number += 1
 
 print('Total:', words_number)
