@@ -1,22 +1,25 @@
-def is_anagram_basic(word_1, word_2):
-    letters_comparison = []
+def character_count(chain):
+    result= dict()
 
-    if len(word_1) != len(word_2):
-        return False
+    for character in chain:
+        if character in result:
+            result[character] += 1
+        else:
+            result[character] = 1
 
-    for character_1 in word_1:
-        do_not_add_false = False
-        for character_2 in word_2:
-            if character_1 == character_2:
-                do_not_add_false = True
-                letters_comparison.append(True)
+    return result
 
-        if not do_not_add_false:
-            letters_comparison.append(False)
-
-    if False in letters_comparison:
-        return False
-    else:
-        return True
 def is_anagram(word_1, word_2):
-    return is_anagram_basic(word_1, word_2) and is_anagram_basic(word_2, word_1)
+    dictionary_word_1 = character_count(word_1)
+    dictionary_word_2 = character_count(word_2)
+
+    if len(dictionary_word_1) != len(dictionary_word_2):
+        return False
+
+    for character in dictionary_word_1:
+        if character in dictionary_word_2 and dictionary_word_1[character] == dictionary_word_2[character]:
+            pass
+        else:
+            return False
+
+    return True
