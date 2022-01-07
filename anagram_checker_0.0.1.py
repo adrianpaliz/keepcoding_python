@@ -1,4 +1,4 @@
-def is_anagram(word_1, word_2):
+def is_anagram_basic(word_1, word_2):
     letters_comparison = []
 
     if len(word_1) != len(word_2):
@@ -18,3 +18,5 @@ def is_anagram(word_1, word_2):
         return False
     else:
         return True
+def is_anagram(word_1, word_2):
+    return is_anagram_basic(word_1, word_2) and is_anagram_basic(word_2, word_1)
