@@ -29,7 +29,22 @@ def age_imput():
         age = input("How old you are?: ")
     return int(age)
 
+def print_on_screen():
+    zoo_tickets_module.locate_on_display(4, 5)
+    print("Baby....:   -")
+    zoo_tickets_module.locate_on_display(5, 5)
+    print("Kid.....:   -")
+    zoo_tickets_module.locate_on_display(6, 5)
+    print("Adult...:   -")
+    zoo_tickets_module.locate_on_display(7, 5)
+    print("Senior..:   -")
+
+    zoo_tickets_module.locate_on_display(9, 8)
+    print("Total....:")
+
 zoo_tickets_module.clear_display()
+
+print_on_screen()
 
 age = age_imput()
 
@@ -37,34 +52,32 @@ total_price = 0
 
 line = 4
 
-line_number_baby = 0
-line_number_kid = 0
-line_number_adult = 0
-line_number_senior = 0
-
 while age != 0:
     ticket_price = ticket_price_calculation(age)
     if ticket_price == 0:
-        line = 4
-        line_number_baby += 1
-        zoo_tickets_module.locate_on_display(line, 1)
-        print("Ticket price: {} \tTickets number: {}".format(ticket_price, line_number_baby))
+        zoo_tickets_module.locate_on_display(4, 15)
+        print(1)
+        zoo_tickets_module.locate_on_display(4, 19)
+        print(ticket_price)
+
     if ticket_price == 14:
-        line = 5
-        line_number_kid += 1
-        zoo_tickets_module.locate_on_display(line, 1)
-        print("Ticket price: {}\tTickets number: {}".format(ticket_price, line_number_kid))
+        zoo_tickets_module.locate_on_display(5, 15)
+        print(1)
+        zoo_tickets_module.locate_on_display(5, 19)
+        print(ticket_price)
+
     if ticket_price == 23:
-        line = 6
-        line_number_adult += 1
-        zoo_tickets_module.locate_on_display(line, 1)
-        print("Ticket price: {}\tTickets number: {}".format(ticket_price, line_number_adult))
+        zoo_tickets_module.locate_on_display(6, 15)
+        print(1)
+        zoo_tickets_module.locate_on_display(6, 19)
+        print(ticket_price)
+
     if ticket_price == 18:
-        line = 7
-        line_number_senior += 1
-        zoo_tickets_module.locate_on_display(line, 1)
-        print("Ticket price: {}\tTickets number: {}".format(ticket_price, line_number_senior))
-    line += 1
+        zoo_tickets_module.locate_on_display(7, 15)
+        print(1)
+        zoo_tickets_module.locate_on_display(7, 19)
+        print(ticket_price)
+
     total_price += ticket_price
 
     age = age_imput()
