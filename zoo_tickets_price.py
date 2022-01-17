@@ -42,6 +42,7 @@ def ticket_type_identifier(age):
         ticket_type = 'adult'
     else:
         ticket_type = 'senior'
+
     return ticket_type
 
 def age_imput_validation(raw_input):
@@ -54,30 +55,29 @@ def age_imput_validation(raw_input):
         return False
 
 def age_imput():
-    zoo_tickets_module.locate_on_display(1, 1)
-    age = input("How old you are?: ")
+    age = zoo_tickets_module.input_location("How old you are?: ", 1, 1)
     while age_imput_validation(age) == False:
-        zoo_tickets_module.locate_on_display(25, 1)
-        print("Wrong age", end = "")
-        zoo_tickets_module.locate_on_display(1, 1)
-        age = input("How old you are?: ")
+        zoo_tickets_module.text_format(0, 33, 41)
+        zoo_tickets_module.print_location("Wrong age", 25, 1, True)
+        zoo_tickets_module.reset_text_format()
+        age = zoo_tickets_module.input_location("How old you are?: ", 1, 1)
+
+    zoo_tickets_module.clear_line(25)
+
     return int(age)
 
 def print_on_screen():
-    zoo_tickets_module.locate_on_display(4, 5)
-    print("Baby....:   -")
-    zoo_tickets_module.locate_on_display(5, 5)
-    print("Kid.....:   -")
-    zoo_tickets_module.locate_on_display(6, 5)
-    print("Adult...:   -")
-    zoo_tickets_module.locate_on_display(7, 5)
-    print("Senior..:   -")
+    zoo_tickets_module.clear_display()
+    zoo_tickets_module.print_location("Baby....:   -", 4, 5)
+    zoo_tickets_module.print_location("Kid.....:   -", 5, 5)
+    zoo_tickets_module.print_location("Adult...:   -", 6, 5)
+    zoo_tickets_module.print_location("Senior..:   -", 7, 5)
 
-    zoo_tickets_module.locate_on_display(9, 8)
-    print("Total....:")
+    zoo_tickets_module.text_format(1)
+    zoo_tickets_module.print_location("Total....:", 9, 8)
+    zoo_tickets_module.reset_text_format()
 
 def data_print():
-    zoo_tickets_module.clear_display()
     print_on_screen()
 
     age = age_imput()
@@ -86,19 +86,23 @@ def data_print():
     while age != 0:
         ticket_type = ticket_type_identifier(age)
         ticket_price = tickets_prices[ticket_type]
-        total_tickets[ticket_type] += 1 
 
-        zoo_tickets_module.locate_on_display(amount_of_tickets[ticket_type]['tickets_number'][0], amount_of_tickets[ticket_type]['tickets_number'][1])
-        print(total_tickets[ticket_type])
+        total_tickets[ticket_type] += 1
 
-        zoo_tickets_module.locate_on_display(amount_of_tickets[ticket_type]['tickets_price'][0], amount_of_tickets[ticket_type]['tickets_price'][1])
-        print("{:7.2f}$".format(total_tickets[ticket_type] * ticket_price))
+        zoo_tickets_module.print_location(total_tickets[ticket_type], \
+                                          amount_of_tickets[ticket_type]['tickets_number'][0], \
+                                          amount_of_tickets[ticket_type]['tickets_number'][1])
+
+        zoo_tickets_module.print_location("{:7.2f}$".format(total_tickets[ticket_type] * ticket_price), \
+                                          amount_of_tickets[ticket_type]['tickets_price'][0], \
+                                          amount_of_tickets[ticket_type]['tickets_price'][1])
 
         total_price += ticket_price
-        zoo_tickets_module.locate_on_display(9, 19)
-        print("{:7.2f}$".format(total_price))
-
+        zoo_tickets_module.text_format(1)
+        zoo_tickets_module.print_location("{:7.2f}$".format(total_price), 9, 19)
+        zoo_tickets_module.reset_text_format()
         age = age_imput()
 
     zoo_tickets_module.locate_on_display(11, 1)
+
 data_print()
