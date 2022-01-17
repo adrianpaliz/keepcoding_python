@@ -9,10 +9,21 @@ def ticket_price_calculation(age):
         price = 18
     return price
 
+def age_imput_validation(raw_input):
+    try:
+        integer = int(raw_input)
+        if integer >= 0:
+            return True
+        return False
+    except:
+        return False
+
 def age_imput():
     age = input("How old you are?: ")
-    age = int(age)
-    return age
+    while age_imput_validation(age) == False:
+        print("Wrong age")
+        age = input("How old you are?: ")
+    return int(age)
 
 age = age_imput()
 
