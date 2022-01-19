@@ -45,6 +45,12 @@ def data_print():
                                           style = 'bold')
         age = zoo_tickets_text_interface.age_imput()
 
+    tickets_file = open('transactions.txt', 'a+')
+    transaction = "{},{},{},{}\n".format(total_tickets['baby'], total_tickets['kid'], \
+                                       total_tickets['adult'], total_tickets['senior'])
+    tickets_file.write(transaction)
+    tickets_file.close()
+
     zoo_tickets_module.locate_on_display(11, 1)
 
 data_print()
