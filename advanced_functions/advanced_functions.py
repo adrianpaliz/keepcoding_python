@@ -1,14 +1,14 @@
-def sum_squares(limit_to):
+def return_integer(integer):
+    return integer
+
+def square(integer):
+    return integer * integer
+
+def sum_all_integers_advanced(limit_to, function):
     result = 0
     for integer in range(limit_to + 1):
-        result += integer * integer
+        result += function(integer)
     return result
 
-def sum_all_integers(limit_to):
-    result = 0
-    for integer in range(0, limit_to + 1):
-        result += integer
-    return result
-
-print(sum_all_integers(100))
-print(sum_squares(3))
+print(sum_all_integers_advanced(100, return_integer))
+print(sum_all_integers_advanced(3, square))
