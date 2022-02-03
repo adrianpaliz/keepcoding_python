@@ -2,39 +2,52 @@ import pygame, sys, random
 
 
 class Competitor:
-    __costumes = ("turtle", "fish", "prawn", "moray", "octopus")
+    '''
+    __players_info is a list of tuples.
+    The elements of each tuple is:
+        (<Competitor Name>, <Start Position>, <Costume>)
+    '''
+    __players_info = [
+        ("Percanta", "turtle"),
+        ("Tarzan", "fish"),
+        ("Inty", "prawn"),
+        ("Chimborazo", "octopus"),
+    ]
+
+    __start_positions = [160, 200, 240, 280]
 
     def __init__(self, x_axis=0, y_axis=0):
-        costume_index = random.randint(0, 4)
+        choice = random.choice(self.__players_info)
+        self.__players_info.remove(choice)
 
         self.costume = pygame.image.load(
-            "images/{}.png".format(self.__costumes[costume_index])
+            "images/{}.png".format(choice[1])
         )
-        self.position = [x_axis, y_axis]
-        self.name = ""
+
+        start_position = random.choice(self.__start_positions)
+        self.__start_positions.remove(start_position)
+
+        self.position = [x_axis, y_axis or start_position]
+        self.name = choice[0]
 
     def move_forward(self):
-        self.position[0] += random.randint(1, 6)
+        self.position[0] += random.random() * 3
 
 
 class Game:
     competitors = []
-    __start_position_y_axis = (160, 200, 240, 280)
-    __names = ("Percanta", "Tarzan", "Inty", "Chimborazo")
+    num_competitors = 4
     __start_line = 5
     __finish_line = 620
+    screen_width = 640
+    screen_height = 480
 
     def __init__(self):
-        self.__screen = pygame.display.set_mode((640, 480))
+        self.__screen = pygame.display.set_mode((self.screen_width, self.screen_height))
         self.__background = pygame.image.load("images/background.png")
         pygame.display.set_caption("Animal race.")
 
-        for chosen_one in range(4):
-            competitor = Competitor(
-                self.__start_line, self.__start_position_y_axis[chosen_one]
-            )
-            competitor.name = self.__names[chosen_one]
-            self.competitors.append(competitor)
+        self.competitors = [Competitor(self.__start_line) for competitor in range(self.num_competitors)]
 
     def close(self):
         pygame.quit()
